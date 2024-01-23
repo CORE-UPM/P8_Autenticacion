@@ -1,6 +1,6 @@
 # Práctica 8: Autenticación
 
-Versión: 13 de Febrero de 2023
+Versión: 23 de Enero de 2024
 
 ## Objetivos
 * Afianzar los conocimientos obtenidos sobre el uso de Express para desarrollar servidores web.
