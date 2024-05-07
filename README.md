@@ -64,7 +64,7 @@ Importar y configurar el paquete en **app.js**:
     . . .
 
     // Configuracion de la session para almacenarla en BBDD Redis.
-    app.use(session({secret: "Blog 2022",
+    app.use(session({secret: "Blog 2024",
                      resave: false,
                      saveUninitialized: true}));
     . . .
