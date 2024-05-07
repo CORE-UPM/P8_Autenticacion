@@ -1,6 +1,6 @@
 # Práctica 8: Autenticación
 
-Versión: 23 de Enero de 2024
+Versión: 7 de Mayo de 2024
 
 ## Objetivos
 * Afianzar los conocimientos obtenidos sobre el uso de Express para desarrollar servidores web.
@@ -22,15 +22,11 @@ en las clases teóricas de la asignatura.
 En el mini proyecto **Autenticación** se desarrollaron los recursos de los usuarios, y también se añadió la funcionalidad de autenticación.
 Este trabajo puede reutilizarse casi directamente.
 
-Hay dos detalles que se exigen en esta práctica y que difieren del trabajo realizado en el mini proyecto **Autenticación**.
+Hay un detalle que se exige en esta práctica y que difiere del trabajo realizado en el mini proyecto **Autenticación**.
 
 * En el modelo **User** del mini proyecto solo se guardan los campos **username**, **password**, **salt** e **isAdmin**.
 En esta práctica también hay que guardar y gestionar un campo llamado **email** con la dirección de correo electrónico del usuario.
 Este nuevo campo debe manejarse en todas las vistas de los usuarios.
-
-* En el mini proyecto, la definición de las rutas del API CRUD de gestión de los usuarios se hace en el fichero **routes/users.js**.
-Para esta práctica se pide que estas mismas definiciones se hagan en **routes/index.js**.
-
 
 ## Descargar el código del proyecto
 
@@ -108,18 +104,19 @@ modifíquelos para añadir el campo **email**. Utilice el usuario seguido de `@c
 ### Tarea 4 - Definición de rutas
 
 Las definiciones de las rutas para gestionar los usuarios y la session de login hay que añadirlas
-al fichero **routes/index.js**.
+al fichero **routes/users.js**.
 
-Siga los siguientes pasos para completar el contenido de **routes/index.js**:
+Siga los siguientes pasos para completar el contenido de los ficheros **routes/users.js** y **routes/login.js**:
 
 * Importe/requiera los controladores de usuarios y sesión **controllers/user.js**  y **controllers/session.js**.
 
-* Copie las mismas rutas definidas en el fichero **routes/users.js** del mini proyecto en **routes/index.js**, 
-sin olvidar añadir el prefijo **/users** en todas las definiciones.
+* Copie las mismas rutas definidas en el fichero **routes/users.js** del mini proyecto en **routes/users.js**.
 Copie tambien la sentencia para gestionar la carga del parámetro de ruta **:userId**.
 
-* Copie las rutas definidas en el fichero **routes/index.js** del mini proyecto para gestionar
-la sesión de login y el autologout. 
+* Copie las rutas definidas en el fichero **routes/login.js** del mini proyecto en **routes/login.js** para gestionar
+la sesión de login y el autologout.
+
+* Modifique **app.js** para cargar las rutas definidas en los ficheros **routes/users.js** y **routes/login.js**.
 
 ### Tarea 5 - Crear los controladores
 
