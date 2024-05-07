@@ -99,22 +99,22 @@ Modifique **models/index.js** para importar la definición del modelo **User**.
 * Copie directamente el fichero **helpers/crypt.js** que se encarga de cifrar los passwords.
 
 * Copie el fichero de migración **CreateUsersTable** y el fichero seeder **FillUsersTable** del mini proyecto, y 
-modifíquelos para añadir el campo **email**. Utilice el usuario seguido de `@core.example` (p.e., `admin@core.example`).
+modifíquelos para añadir el campo **email**. Utilice el nombre del usuario seguido de `@core.example` (p.e., `admin@core.example`).
 
 ### Tarea 4 - Definición de rutas
 
-Las definiciones de las rutas para gestionar los usuarios y la session de login hay que añadirlas
-al fichero **routes/users.js**.
+Las definiciones de las rutas para gestionar los usuarios y la session de login hay que añadirlas en los ficheros **routes/users.js** y **routes/login.js**.
 
-Siga los siguientes pasos para completar el contenido de los ficheros **routes/users.js** y **routes/login.js**:
+Siga los siguientes pasos para completar el contenido de estos ficheros:
 
-* Importe/requiera los controladores de usuarios y sesión **controllers/user.js**  y **controllers/session.js**.
+* Importe/requiera el controlador de usuarios **controllers/user.js** en **routes/users.js**.
+
+* Importe/requiera el controlador de sesión **controllers/session.js** en **routes/login.js**.
 
 * Copie las mismas rutas definidas en el fichero **routes/users.js** del mini proyecto en **routes/users.js**.
 Copie tambien la sentencia para gestionar la carga del parámetro de ruta **:userId**.
 
-* Copie las rutas definidas en el fichero **routes/login.js** del mini proyecto en **routes/login.js** para gestionar
-la sesión de login y el autologout.
+* Copie las rutas definidas en el fichero **routes/login.js** del mini proyecto en **routes/login.js** para gestionar la sesión de login y el autologout.
 
 * Modifique **app.js** para cargar las rutas definidas en los ficheros **routes/users.js** y **routes/login.js**.
 
