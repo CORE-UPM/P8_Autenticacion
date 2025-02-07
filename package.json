@@ -9,7 +9,7 @@
         "githubURL": "CORE-UPM/P8_Autenticacion",
         "serverUrl": "https://aat.dit.upm.es/",
         "courseId": "395",
-        "assignmentId": "455"
+        "assignmentId": "8551"
     },
     "dependencies": {
         "autocorector": "^3.2.2",
