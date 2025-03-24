@@ -1,6 +1,6 @@
 # Práctica 8: Autenticación
 
-Versión: 7 de Mayo de 2024
+Versión: 24 de Marzo de 2025
 
 ## Objetivos
 * Afianzar los conocimientos obtenidos sobre el uso de Express para desarrollar servidores web.
@@ -27,6 +27,7 @@ Hay un detalle que se exige en esta práctica y que difiere del trabajo realizad
 * En el modelo **User** del mini proyecto solo se guardan los campos **username**, **password**, **salt** e **isAdmin**.
 En esta práctica también hay que guardar y gestionar un campo llamado **email** con la dirección de correo electrónico del usuario.
 Este nuevo campo debe manejarse en todas las vistas de los usuarios.
+
 
 ## Descargar el código del proyecto
 
@@ -64,7 +65,7 @@ Importar y configurar el paquete en **app.js**:
     . . .
 
     // Configuracion de la session para almacenarla en BBDD Redis.
-    app.use(session({secret: "Blog 2024",
+    app.use(session({secret: "Blog 2025",
                      resave: false,
                      saveUninitialized: true}));
     . . .
@@ -72,8 +73,6 @@ Importar y configurar el paquete en **app.js**:
     // Este middleware nos permite usar loginUser en las vistas (usando locals.loginUser)
     // Debe añadirse antes que el indexRouter
     app.use(function(req, res, next) {
-
-      console.log(">>>>>>>>>>>>>>", req.session.loginUser);
 
       // To use req.loginUser in the views
       res.locals.loginUser = req.session.loginUser && {
@@ -86,6 +85,8 @@ Importar y configurar el paquete en **app.js**:
       next();
     });
 
+En el código anterior se ha registrado un middleware que copia los datos del usuario logueado en una variable local de **res**.
+Estos datos se necesitarán en las vistas EJS.
 
 ### Tarea 3 - Desarrollar el modelo
 
@@ -103,20 +104,14 @@ modifíquelos para añadir el campo **email**. Utilice el nombre del usuario seg
 
 ### Tarea 4 - Definición de rutas
 
-Las definiciones de las rutas para gestionar los usuarios y la session de login hay que añadirlas en los ficheros **routes/users.js** y **routes/login.js**.
+Las definiciones de las rutas para gestionar los usuarios y la session de login hay que añadirlas
+a los ficheros **routes/users.js** y **routes/login.js**.
 
-Siga los siguientes pasos para completar el contenido de estos ficheros:
+Estos ficheros son iguales que los desarrollados en el mini proyecto de autenticación.
 
-* Importe/requiera el controlador de usuarios **controllers/user.js** en **routes/users.js**.
-
-* Importe/requiera el controlador de sesión **controllers/session.js** en **routes/login.js**.
-
-* Copie las mismas rutas definidas en el fichero **routes/users.js** del mini proyecto en **routes/users.js**.
-Copie tambien la sentencia para gestionar la carga del parámetro de ruta **:userId**.
-
-* Copie las rutas definidas en el fichero **routes/login.js** del mini proyecto en **routes/login.js** para gestionar la sesión de login y el autologout.
-
-* Modifique **app.js** para cargar las rutas definidas en los ficheros **routes/users.js** y **routes/login.js**.
+Estos ficheros de rutas son módulos que deben exportar un objeto Router de Express.
+Las rutas para manejar los usuarios y los adjuntos se definiran en estos objetos Router.
+Estos ficheros deben importarse en **app.js** y registrar los objectos Router obtenidos como middlewares.
 
 ### Tarea 5 - Crear los controladores
 
@@ -131,7 +126,7 @@ Copie este fichero, y realice los cambios necesarios para soportar el email de l
 
 ### Tarea 6 - Crear las vistas
 
-En esta práctica se usarán las mismas vistas que en el mini proyecto de autenticación, con la unica diferencia de
+En esta práctica se usarán las mismas vistas que en el mini proyecto de autenticación, con la única diferencia de
 que algunas vistas de usuario deben mostrar el nuevo campo **email**.
 
 Siga los siguientes pasos para crear los ficheros de vistas:
@@ -140,12 +135,11 @@ Siga los siguientes pasos para crear los ficheros de vistas:
 
 * Copie todos los ficheros de vistas de usuario **index.ejs**, **show.ejs**, **new.ejs**, **edit.ejs**, **_form.ejs** 
 del directorio, **views/users**.
-Modifique **show.ejs** para mostrar el email del usuario.
-Modifique **_form.ejs** para añadir un entrada de texto en los formulario para editar el email del usuario. 
-Este campo de texto debe usar el atributo **name="email"**.
+    - Modifique **show.ejs** para mostrar el email del usuario.
+    - Modifique **_form.ejs** para añadir un nuevo campo **input** de tipo **email** para introducir o editar el email del usuario. Este campo debe tener los siguientes atributos: **id="email"**, **name="email"** y **pattern=".+@.+"**.
 
 * Modifique el menú de navegación de **views/layout.ejs** para añadir un nuevo botón con el texto **Users**.
-Al pulsar este botón, se enviara la primitiva **GET /users** para navegar a la página que muestra un listado con
+Al pulsar este botón, se enviará la primitiva **GET /users** para navegar a la página que muestra un listado con
 los usuarios existentes.
 
 * El código que muestra los botones para hacer login y logout se encuentra en **views/users/index.ejs**.
@@ -153,7 +147,7 @@ Elimine este código de este fichero,
 y añadalo al marco de aplicación **views/layout.ejs**.
 
 * El último paso consiste en copiar el helper dinámico que pasa el valor de **req.sesion.loginUser** al objeto **res** 
-para que este disponible en las vistas. Este helper esta definido en el fichero **app.js** del mini proyecto, y 
+para que este disponible en las vistas. Este helper está definido en el fichero **app.js** del mini proyecto, y 
 hay que copiarlo en el fichero **app.js** de la práctica.
 
 ### Tarea 7 - Aplicar migraciones, seeders y probar
@@ -220,17 +214,20 @@ Instrucciones [aquí](https://github.com/CORE-UPM/Instrucciones_Practicas/blob/m
 
 ## Rúbrica
 
-Se puntuará el ejercicio a corregir sumando el % indicado a la nota total si la parte indicada es correcta:
+Antes de evaluar la práctica se realizarán un serie de comprobaciones:
+- Existe el directorio blog.
+- Se ha usado correctamente el marco de aplicación.
+- Existen los ficheros pedidos: controladores, migraciones, seeders, ...
+- Se han creado los scripts pedidos en package.json.
 
-- **10%:** Se atiende la petición GET /users
-- **10%:** La petición GET /users muestra todos los usuarios.
-- **10%:** Se atiende la petición GET /users/:userId que muestra el usuario pedido, y su campo **email**.
-- **5%:** La peticion GET /users/:userId de un usuario inexistente informa de que no existe.
-- **10%:** Se atiende la petición GET /users/new y muestra los campos del formulario new, incluido el de **email**.
-- **5%:** No pueden crearse un usuario con **username** vacío o repetido.
-- **15%:** La petición POST /users crea un nuevo usuario.
-- **10%:** Se atiende la petición GET /users/:userId/edit y muestra los campos (incluido **email**) del formulario bien rellenos.
-- **15%:** La petición PUT /users/:userId actualiza el usuario
-- **10%:** La petición DELETE /users/:userId borra el usuario indicado
+Una vez superadas las comprobaciones anteriores,
+se puntuará la práctica sumando el % indicado a la nota total si la parte indicada es correcta:
+- **20%:** Funcionamiento correcto de las operaciones de login y logout.
+- **2%:** Creado el botón para ver el listado de todos los usuarios.
+- **10%:** Funcionamiento correcto de la página que muestra todos los usuarios.
+- **10%:** Funcionamiento correcto de la página que muestra un usuario.
+- **30%:** Funcionamiento correcto de la creación de nuevos usuarios.
+- **20%:** Funcionamiento correcto de la edición de usuarios.
+- **8%:** Funcionamiento correcto del borrado de usuarios.
 
 Si pasa todos los tests se dará la máxima puntuación.
