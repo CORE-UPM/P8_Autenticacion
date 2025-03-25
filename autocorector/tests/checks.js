@@ -340,7 +340,6 @@ describe("Tests Práctica 8", function() {
             browser.assert.input('form input[type="password"][name="password"]', users[1].password);
 
             this.msg_err = `No se puede enviar el formulario de login`;
-            // await browser.pressButton('input[name=commit]');
             await browser.pressButton('form input[type="submit"]');
             browser.assert.status(200);
             debug(browser.location.href);
