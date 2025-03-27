@@ -1,6 +1,6 @@
 # Práctica 8: Autenticación
 
-Versión: 24 de Marzo de 2025
+Versión: 27 de Marzo de 2025
 
 ## Objetivos
 * Afianzar los conocimientos obtenidos sobre el uso de Express para desarrollar servidores web.
@@ -216,12 +216,15 @@ Instrucciones [aquí](https://github.com/CORE-UPM/Instrucciones_Practicas/blob/m
 
 Antes de evaluar la práctica se realizarán un serie de comprobaciones:
 - Existe el directorio blog.
+- Las tablas de la base de datos son correctas.
 - Se ha usado correctamente el marco de aplicación.
 - Existen los ficheros pedidos: controladores, migraciones, seeders, ...
 - Se han creado los scripts pedidos en package.json.
 
 Una vez superadas las comprobaciones anteriores,
 se puntuará la práctica sumando el % indicado a la nota total si la parte indicada es correcta:
+
+- **0%:** Tablas de la BBDD correctas.
 - **20%:** Funcionamiento correcto de las operaciones de login y logout.
 - **2%:** Creado el botón para ver el listado de todos los usuarios.
 - **10%:** Funcionamiento correcto de la página que muestra todos los usuarios.
