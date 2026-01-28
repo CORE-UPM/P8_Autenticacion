@@ -18,9 +18,11 @@ describe("Tests Práctica 10 - Base de Datos", function () {
 
     let sequelize;
 
-    const db_filename = 'blog.sqlite';
+    const databaseConfigPath = path.resolve(path.join(__dirname, "..", "config", "config.json"));
+    process.env.DATABASE_CONFIG_PATH = databaseConfigPath;
+
+    const db_filename = 'autocorector.sqlite';
     const db_file = path.resolve(path.join(ROOT, db_filename));
-    const db_url = `sqlite://${db_file}`;
 
     before(async function () {
         if (has_failed()) {
@@ -37,9 +39,9 @@ describe("Tests Práctica 10 - Base de Datos", function () {
         fs.closeSync(fs.openSync(db_file, 'w'));
 
         let sequelize_cmd = path.join(PATH_ASSIGNMENT, "node_modules", ".bin", "sequelize")
-        await exec(`${sequelize_cmd} db:migrate --url "${db_url}" --migrations-path ${path.join(PATH_ASSIGNMENT, "migrations")}`);
+        await exec(`${sequelize_cmd} db:migrate --config "${databaseConfigPath}" --migrations-path ${path.join(PATH_ASSIGNMENT, "migrations")}`);
         debug('Lanzada la migración');
-        await exec(`${sequelize_cmd} db:seed:all --url "${db_url}" --seeders-path ${path.join(PATH_ASSIGNMENT, "seeders")}`);
+        await exec(`${sequelize_cmd} db:seed:all --config "${databaseConfigPath}" --seeders-path ${path.join(PATH_ASSIGNMENT, "seeders")}`);
         debug('Lanzado el seeder');
     });
 
