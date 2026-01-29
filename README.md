@@ -1,6 +1,11 @@
+<img  align="left" width="150" style="float: left;" src="https://www.upm.es/sfs/Rectorado/Gabinete%20del%20Rector/Logos/UPM/CEI/LOGOTIPO%20leyenda%20color%20JPG%20p.png">
+<img  align="right" width="60" style="float: right;" src="https://www.dit.upm.es/images/dit08.gif">
+
+<br/><br/><br/>
+
 # Práctica 8: Autenticación
 
-Versión: 28 de Enero de 2026
+Versión: 29 de Enero de 2026
 
 ## Objetivos
 * Afianzar los conocimientos obtenidos sobre el uso de Express para desarrollar servidores web.
@@ -12,7 +17,7 @@ Versión: 28 de Enero de 2026
 
 Para realizar la práctica el alumno deberá tener instalado en su ordenador:
 - Herramienta GIT para gestión de repositorios [Github](https://git-scm.com/downloads)
-- Entorno de ejecución de javascript [NodeJS](https://nodejs.org/es/download/) versión 22.
+- Entorno de ejecución de javascript [NodeJS](https://nodejs.org/es/download/) versión 24.
 
 ## Descripción de la práctica
 
