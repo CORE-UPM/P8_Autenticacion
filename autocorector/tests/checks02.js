@@ -247,9 +247,9 @@ describe("Tests Práctica 8", function() {
             fs.closeSync(fs.openSync(db_file, 'w'));
 
             let sequelize_cmd = path.join(PATH_ASSIGNMENT, "node_modules", ".bin", "sequelize")
-            await exec(`${sequelize_cmd} db:migrate --config "${databaseConfigPath}" --migrations-path ${path.join(PATH_ASSIGNMENT, "migrations")}`)
+            await exec(`"${sequelize_cmd}" db:migrate --config "${databaseConfigPath}" --migrations-path "${path.join(PATH_ASSIGNMENT, 'migrations')}"`)
             debug('Lanzada la migración');
-            await exec(`${sequelize_cmd} db:seed:all --config "${databaseConfigPath}" --seeders-path ${path.join(PATH_ASSIGNMENT, "seeders")}`)
+            await exec(`"${sequelize_cmd}" db:seed:all --config "${databaseConfigPath}" --seeders-path "${path.join(PATH_ASSIGNMENT, 'seeders')}"`)
             debug('Lanzado el seeder');
 
 
